@@ -1,6 +1,20 @@
-<?php include './src/head.php';?>
+<?php
+class db{
+    
+ function select($select,$from){
+    require_once 'private/db.php';
+    $req= "SELECT $select FROM $from";
+    $result = mysqli_query($conn,$req);
+    return $result;
+} 
 
-<h1>Books list</h1>
+}
+
+
+$db = new db;
+include 'src/head.php';
+?>
+
 <table>
 <tr>
     <th>No.</th>
@@ -10,19 +24,19 @@
     <th>Action</th>
 </tr>
 <?php
-require_once 'private/select.php';
+$result=$db->select("*","livre");
 $count = 0;
-while ($row=mysqli_fetch_assoc($result)):;
+while ($row=mysqli_fetch_assoc($result)) {
     $id=$row['id_book'];
     $title=$row['book_title'];
     $author=$row['author'];
     $publisher=$row['publisher'];   
 ?>
     <tr>
-        <td><?=($count++); ?></td>
-        <td><?=$author; ?></td>
-        <td><?=$title; ?></td>
-        <td><?=$publisher; ?></td>
+        <td><?=($count++)?></td>
+        <td><?=$author?></td>
+        <td><?=$title?></td>
+        <td><?=$publisher?></td>
         <td>
             <a href="./updateForm.php?id=<?=$id?>&title=<?=$title?>&author=<?=$author?>&publisher=<?=$publisher?>"><i class="fas fa-pencil-alt"></i></a>
             &nbsp;&nbsp;&nbsp;
@@ -30,7 +44,6 @@ while ($row=mysqli_fetch_assoc($result)):;
         </td>
     </tr>
 
-<?php endwhile; ?>
+<?php } ?>
 </table>
-
-<?php include './src/foot.php';?>
+<?php include 'src/foot.php';?>

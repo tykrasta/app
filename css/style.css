@@ -19,7 +19,7 @@ input{
     margin: auto;
     font-size: 1.3em;
 }
-[type=submit]{
+[type=submit],button{
     margin: 10px auto;width:20%;
 }
 header{
@@ -35,12 +35,24 @@ header h2{
 header nav{
     margin:25px 10px;
 }
-header a{
+header nav a{
     background:#a8a8a8;
-    padding: 5px 10px;
+    box-shadow: #091796 0 2px 3px;
+    border-radius: 20px;
+    padding: 15px 30px;
+    margin: 0 3px;
+}
+header nav a:hover{
+    background:#435d6e;
+    box-shadow: #02165a 0 2px 3px;
+}
+header nav a:last-child:hover{
+    background:#435d6e;
+    color:#0b8cb3;
 }
 h1{
     text-align: center;
+    padding:25px;
 }
 table{
     width:80%;margin: auto;
